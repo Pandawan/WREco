@@ -9,6 +9,7 @@ import { sendRequestToServer } from 'helpers/api';
 import InputField from 'components/inputField';
 import Button from 'components/button';
 import Title from 'components/title';
+import { defaultQueue } from 'helpers/defaultQueue';
 
 const useStyles = createUseStyles({
   mainContainer: {
@@ -30,15 +31,6 @@ const useStyles = createUseStyles({
     marginLeft: '0.5rem',
   }
 });
-
-const defaultQueue = [
-  {
-    name: "Toby",
-    symptoms: [ "strong", "Migraine" ],
-    timestamp: "2020-02-16T06:02:30.207Z",
-    severity: "moderate"
-  }
-];
 
 function MainView() {
   const history = useHistory();

@@ -37,11 +37,18 @@ const useStyles = createUseStyles({
 });
 
 function Button(props) {
-  const { className, children, onClick, rounded, unclickable } = props;
+  const { className, children, onClick, rounded, notClickable } = props;
   const { btn, container, roundedBtn, clickableBtn } = useStyles();
 
+  const classes = [
+    btn,
+    rounded ? roundedBtn : undefined,
+    notClickable ? undefined : clickableBtn,
+    className
+  ].filter(value => value);
+
   return (
-    <button className={btn + (rounded ? ' ' + roundedBtn : '') + (!unclickable ? ' ' + clickableBtn : '') + ' ' + className} onClick={onClick}>
+    <button className={classes.join(' ')} onClick={onClick}>
       <div className={container}>
         {children}
       </div>
