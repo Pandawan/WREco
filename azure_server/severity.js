@@ -7,9 +7,12 @@ const severities = {
     'leg',
     'arm',
     'unconscious',
-    'accident'
+    'accident',
+    'bone',
+    'bone fracture',
+    'fracture'
   ],
-  critical: ['bone', 'vehicle', 'head', 'car crash', 'heart failure']
+  critical: ['vehicle', 'head', 'car crash', 'heart failure', 'stroke']
 };
 
 //export default severities;
