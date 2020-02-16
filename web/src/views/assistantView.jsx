@@ -53,7 +53,15 @@ const useStyles = createUseStyles({
   },
 });
 
-
+const clientData = {
+  clientId: 'a4ujsPBbf5PdBQKXd1Jvbg==',
+  clientKey: 'XAYhFwblvGtlLd3r77DBuCwpNQpSQw-BZLKrKHV7IcNA1RqW8vZ0A9nUXRO1IaXwUE7ogDrnIaspQQIMd966tQ==',
+  requestInfo: {
+    UserID: "test_user",
+    Latitude: 37.427475, 
+    Longitude: -122.169716
+  },
+}
 
 function AssistantView() {
   const { mainContainer, form, icon, buttonGroup, chatHistory, messageGroup, yourMessages, messageContent } = useStyles();
@@ -72,28 +80,53 @@ function AssistantView() {
     const rec = new Houndify.AudioRecorder();
     setRecorder(rec);
 
+    let vr;
+    let conversationState;
+
     console.log(rec);
 
     rec.on('start', () => {
       if (!rec.stream || rec.stream.state === 'closed') {
-        messages.push({ isYours: false, content: 'Pleae enable Microphone permissions for this to work.' })
-        setMessagesState(messages);
+        setMessagesState((messages) => {
+          messages.push({ isYours: false, content: 'Pleae enable Microphone permissions for this to work.' })
+          return messages;
+        });
         return;
       }
 
-      const vr = new Houndify.VoiceRequest({
-        
+      vr = new Houndify.VoiceRequest({
+        ...clientData,
+        conversationState,
+        sampleRate: 16000,
+        onResponse: (response, info) => {
+          setMessagesState((messages) => {
+            messages.push({ isYours: false, content: response.AllResults[0].WrittenResponse });
+            return messages;
+          });
+          console.log(response, info);
+          // userConversationState = response.AllResults[0].ConversationState;
+        },
+        onError: (err, info) => {
+          console.log(err);
+        }
       });
       setVoiceRequest(vr);
+      console.log(vr);
+    });
 
-
+    rec.on('data', (data) => {
+      if (vr) {
+        vr.write(data);
+      }
     });
 
     rec.on('error', (err) => {
       console.log(err);
       if (!rec.stream || rec.stream.state === 'closed') {
-        messages.push({ isYours: false, content: 'Pleae enable Microphone permissions for this to work.' })
-        setMessagesState(messages);
+        setMessagesState((messages) => {
+          messages.push({ isYours: false, content: 'Pleae enable Microphone permissions for this to work.' })
+          return messages;
+        });
         return;
       }
     })

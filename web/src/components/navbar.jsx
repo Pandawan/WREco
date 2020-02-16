@@ -21,7 +21,7 @@ function Navbar() {
   return (
     <nav className={navbar}>
       <div className={innerContainer}>
-        <h1 className={title}>WREco</h1>
+        <h1 className={title}>Waitless</h1>
       </div>
     </nav>
   );
