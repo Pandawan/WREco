@@ -6,6 +6,7 @@ import InformationView from 'views/informationView';
 import MainView from 'views/mainView';
 import DebugView from 'views/debugView';
 import ChoiceView from 'views/choiceView';
+import AssistantView from 'views/assistantView';
 import VirtualWaitingRoomView from 'views/virtualWaitingRoom';
 import Navbar from 'components/navbar';
 
@@ -36,6 +37,9 @@ function App() {
             </Route>
             <Route path='/choice'>
               <ChoiceView />
+            </Route>
+            <Route path='/assistant'>
+              <AssistantView />
             </Route>
             <Route path="/room">
               <VirtualWaitingRoomView />
