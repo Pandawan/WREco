@@ -9,6 +9,9 @@ import ChoiceView from 'views/choiceView';
 import VirtualWaitingRoomView from 'views/virtualWaitingRoom';
 import Navbar from 'components/navbar';
 
+import InfoView from 'views/infoView';
+import { createUseStyles } from 'react-jss';
+
 const useStyles = createUseStyles({
   app: {
     background: 'linear-gradient(45deg, #6565e8 0%, #82eef2 100%)',
@@ -28,13 +31,16 @@ function App() {
       <main>
         <BrowserRouter>
           <Switch>
-            <Route path="/response">
+            <Route path='/response'>
               <ResponseView />
             </Route>
-            <Route path="/information">
+            <Route path='/information'>
               <InformationView />
             </Route>
-            <Route path="/choice">
+            <Route path='/info'>
+              <InfoView />
+            </Route>
+            <Route path='/choice'>
               <ChoiceView />
             </Route>
             <Route path="/room">

@@ -5,7 +5,9 @@ const PORT = process.env.PORT || 5000;
 const severities = require('./severity');
 app.use(express.json({ extended: false }));
 
-app.post('/', cors(), async (req, res) => {
+app.use(cors());
+
+app.post('/', async (req, res) => {
   console.log(req.body);
   console.log(severities);
   const {
