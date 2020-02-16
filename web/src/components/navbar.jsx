@@ -6,6 +6,7 @@ const useStyles = createUseStyles({
   },
   innerContainer: {
     margin: '0 auto',
+    padding: '0.5rem 1rem',
     maxWidth: '50rem'
   },
   title: {

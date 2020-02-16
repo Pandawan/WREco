@@ -4,32 +4,31 @@ import { useHistory } from "react-router-dom";
 import createPersistedState from 'use-persisted-state';
 
 import ErrorMessage from 'components/errorMessage';
+import InputField from 'components/inputField';
+import Button from 'components/button';
 
 const useInformation = createPersistedState('information');
 
 const useStyles = createUseStyles({
   mainContainer: {
     margin: '0 auto',
+    padding: '0 1rem',
     maxWidth: '50rem'
   },
   form: {
     '& > *': {
-      margin: '0.5rem 0'
+      margin: '1rem 0'
     }
-  },
-  field: {
-    display: 'block',
-    width: '100%'
   }
 });
 
 function InformationView() {
   const history = useHistory();
 
-  const { mainContainer, form, field } = useStyles();
+  const { mainContainer, form } = useStyles();
 
   const [nameInput, setNameInput] = useState('');
-  const [dobInput, setDOBInput] = useState('');
+  const [telInput, setTelInput] = useState('');
   const [historyInput, setHistoryInput] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [, setInformation] = useInformation(null);
@@ -37,18 +36,25 @@ function InformationView() {
   return (
     <div className={mainContainer}>
       <form className={form}>
-        <div>
-          <label htmlFor="name">Name*</label>
-          <input className={field} type="text" name="name" id="name" value={nameInput} onChange={(event) => setNameInput(event.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="dob">Date of Birth*</label>
-          <input className={field} type="date" name="dob" id="dob" value={dobInput} onChange={(event) => setDOBInput(event.target.value)} />
-        </div>
-        <div>
-          <label htmlFor="history">Past Medical History*</label>
-          <textarea className={field} name="history" id="history" value={historyInput} onChange={(event) => setHistoryInput(event.target.value)} />
-        </div>
+        <h2>Information</h2>
+        <InputField 
+          name="Name*"
+          type="text"
+          value={nameInput}
+          onChange={(event) => setNameInput(event.target.value)}
+        />
+        <InputField 
+          name="Phone*"
+          type="tel"
+          value={telInput}
+          onChange={(event) => setTelInput(event.target.value)}
+        />
+        <InputField 
+          name="Past Medical History*"
+          type="textarea"
+          value={historyInput}
+          onChange={(event) => setHistoryInput(event.target.value)}
+        />
         {errorMessage
           ? (
             <ErrorMessage>
@@ -57,18 +63,18 @@ function InformationView() {
           )
           : null
         }
-        <input type="button" value="Submit" onClick={async (event) => {
+        <Button label="Submit" onClick={async (event) => {
           event.preventDefault();
 
-          if (!nameInput || !dobInput || !historyInput) {
+          if (!nameInput || !telInput || !historyInput) {
             setErrorMessage('All fields are required.');
             return;
           }
 
-          const data = { name: nameInput, dob: dobInput, history: historyInput };
+          const data = { name: nameInput, tel: telInput, history: historyInput };
           setInformation(data);
           history.push('/');
-        }} />
+        }}/>
       </form>
     </div>
   );

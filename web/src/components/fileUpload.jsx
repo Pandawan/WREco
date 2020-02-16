@@ -6,7 +6,7 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
   container: {
     padding: '0.5rem',
-    border: '2px dashed #333',
+    border: '2px dashed #ccc',
     borderRadius: '0.5rem',
     '&:hover': {
       cursor: 'pointer'

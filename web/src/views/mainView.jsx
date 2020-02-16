@@ -6,33 +6,28 @@ import createPersistedState from 'use-persisted-state';
 import FileUpload from 'components/fileUpload';
 import ErrorMessage from 'components/errorMessage';
 import { sendRequestToServer } from 'helpers/api';
+import InputField from 'components/inputField';
+import Button from 'components/button';
 
 const useInformation = createPersistedState('information');
 
 const useStyles = createUseStyles({
   mainContainer: {
     margin: '0 auto',
+    padding: '0 1rem',
     maxWidth: '50rem'
   },
   form: {
     '& > *': {
-      margin: '0.5rem 0'
+      margin: '1rem 0'
     }
-  },
-  field: {
-    display: 'block',
-    width: '100%',
-  },
-  symptomsField: {
-    fontSize: '0.9em',
-    minHeight: '10rem'
   }
 });
 
 function MainView() {
   const history = useHistory();
 
-  const { mainContainer, form, field, symptomsField} = useStyles();
+  const { mainContainer, form, field } = useStyles();
 
   const [symptomsInput, setSymptomsInput] = useState('');
   const [fileInput, setFileInput] = useState([]);
@@ -42,16 +37,18 @@ function MainView() {
   return (
     <div className={mainContainer}>
       <form className={form}>
-        <h1>Create New Case
+        <h2>Create New Case
           {information && information.name
             ? <span> for {information.name}</span>
             : undefined
           }
-        </h1>
-        <div>
-          <label htmlFor="symptoms">Symptoms*</label>
-          <textarea className={field + ' ' + symptomsField} name="symptoms" id="symptoms" value={symptomsInput} onChange={(event) => setSymptomsInput(event.target.value)} />
-        </div>
+        </h2>
+        <InputField 
+          name="Symptoms*"
+          type="textarea"
+          value={symptomsInput}
+          onChange={(event) => setSymptomsInput(event.target.value)}
+        />
         <div>
           <label htmlFor="documents">Additional Photos or Documents</label>
           <FileUpload
@@ -71,7 +68,7 @@ function MainView() {
           )
           : null
         }
-        <input type="button" value="Submit" onClick={async (event) => {
+        <Button label="Submit" onClick={async (event) => {
           event.preventDefault();
 
           if (!symptomsInput) {
@@ -79,10 +76,10 @@ function MainView() {
             return;
           }
 
-          const data = { symptoms: symptomsInput, files: fileInput };
+          const data = { name: information.name, symptoms: symptomsInput, files: fileInput };
           const response = await sendRequestToServer(data);
           history.push('/response', response);
-        }} />
+        }}/>
       </form>
     </div>
   );
