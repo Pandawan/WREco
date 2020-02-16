@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useHistory } from "react-router-dom";
-import { FaPencilAlt, FaMicrophoneAlt } from "react-icons/fa";
+import { FaPencilAlt, FaMicrophoneAlt, FaInfo } from "react-icons/fa";
 import Card from 'components/card';
 import Title from 'components/title';
 
@@ -58,6 +58,16 @@ function ChoiceView() {
           }}>
             <FaMicrophoneAlt className={icon} />
             Voice Assistant
+          </Card>
+        </div>
+        <div className={buttonGroup}>
+
+          <Card onClick={async (event) => {
+            event.preventDefault();
+            history.push('/information');
+          }}>
+            <FaInfo className={icon} />
+            Personal Information
           </Card>
         </div>
       </form>

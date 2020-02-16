@@ -85,12 +85,12 @@ function VirtualWaitingRoomView() {
     .map((data) => ({ ...data, score: calculateScore(data) }))
     .sort((a, b) => b.score - a.score);
 
-    console.log(queue);
+  console.log(queue);
 
-    
-    let positionInQueue = queue.findIndex((val) => val.name === information.name);
-    
-    const waitingTime = positionInQueue * 15;
+  let positionInQueue = queue.findIndex((val) => val.name === information.name);
+  if (positionInQueue === -1) positionInQueue = 0;
+
+  const waitingTime = positionInQueue * 15;
   const waitingTimeText = waitingTime === 0
     ? 'shortly'
     : (waitingTime > 60
@@ -99,7 +99,7 @@ function VirtualWaitingRoomView() {
     );
 
 
-  if(!information) {
+  if (!information) {
     return (
       <ErrorMessage><p>No patient information specified, please fill out <Link to="/information">this form</Link>.</p></ErrorMessage>
     );
@@ -110,7 +110,7 @@ function VirtualWaitingRoomView() {
       <Title>Estimated Waiting Time: {waitingTimeText}</Title>
       <Card className={card + ' ' + mainCard}>
         <p>Queue</p>
-        {queue.map((data) => (
+        {queue.map((data, index) => (
           <Card
             notClickable
             noShadow
@@ -118,7 +118,7 @@ function VirtualWaitingRoomView() {
             key={data.timestamp}>
             <div className={queueCardContent}>
               <span className={queueCardName}>
-                {data.name === information.name
+                {index === positionInQueue
                   ? data.name
                   : undefined
                 }

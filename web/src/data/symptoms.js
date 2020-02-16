@@ -57,7 +57,7 @@ let symps = {
   },
   'car crash': {
     name: 'Car Crash',
-    imgur: 'https://i.ytimg.com/vi/D91YcgfcU2Q/maxresdefault.jpg',
+    image: 'https://i.imgur.com/X34WYSc.png',
     rarity: 'common',
     summary:
       'A traffic collision, also called a motor vehicle collision (MVC) among other terms, occurs when a vehicle collides with another vehicle, pedestrian, animal, road debris, or other stationary obstruction, such as a tree, pole or building. Traffic collisions often result in injury, death, and property damage.'
