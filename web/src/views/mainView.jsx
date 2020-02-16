@@ -94,7 +94,7 @@ function MainView() {
             queue.push(response);
             writeStorage('queue', queue);
 
-            history.push('/debug', queue);
+            history.push('/room', queue);
           }}>Submit</Button>
         </div>
       </form>

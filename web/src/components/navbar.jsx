@@ -1,5 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
+import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   navbar: {
@@ -11,7 +12,11 @@ const useStyles = createUseStyles({
   },
   title: {
     padding: 0,
-    margin: 0
+    margin: 0,
+    '& > a': {
+      color: 'white',
+      textDecoration: 'none'
+    }
   }
 });
 
@@ -21,7 +26,7 @@ function Navbar() {
   return (
     <nav className={navbar}>
       <div className={innerContainer}>
-        <h1 className={title}>Waitless</h1>
+        <h1 className={title}><Link to="/choice">Waitless</Link></h1>
       </div>
     </nav>
   );
