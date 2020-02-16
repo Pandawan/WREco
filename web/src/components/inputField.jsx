@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
     fontWeight: 'bold',
     minWidth: '15rem',
     boxSizing: 'border-box',
-    boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
+    boxShadow: '0px 1px 4px 0px rgba(0,0,0,0.25)',
     marginTop: '0.25rem',
     outline: 'none'
   },

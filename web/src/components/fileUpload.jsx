@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
     padding: '1rem',
     marginTop: '0.25rem',
     border: '2px dashed white',
-    boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
+    boxShadow: '0px 1px 4px 0px rgba(0,0,0,0.25)',
     borderRadius: '1.5rem',
     '&:hover': {
       cursor: 'pointer'
@@ -30,7 +30,7 @@ function FileUpload(props) {
       onDrop(base64Files);
     }
   }, [onDrop]);
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop: handleDrop});
+  const {getRootProps, getInputProps, isDragActive, acceptedFiles} = useDropzone({onDrop: handleDrop});
 
   return (
     <div {...getRootProps()} className={container} >
@@ -39,6 +39,11 @@ function FileUpload(props) {
         isDragActive ?
           <p className={text}>Drop the files here...</p> :
           <p className={text}>Drag 'n' drop some files here, or click to select files</p>
+      }
+      {
+        acceptedFiles && acceptedFiles.length > 0 
+        ? <p className={text}>Files: {acceptedFiles.map(file => file.name).join(', ')}</p>
+        : undefined
       }
     </div>
   )

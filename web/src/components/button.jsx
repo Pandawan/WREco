@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   btn: {
-    background: '#336cb1',
+    background: '#1C6CB6',
     color: 'white',
     padding: '0.75rem 1rem',
     minWidth: '3rem',
@@ -13,16 +13,16 @@ const useStyles = createUseStyles({
     border: '2px solid transparent',
     borderRadius: '2em',
     textAlign: 'center',
-    boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
+    boxShadow: '0px 1px 4px 0px rgba(0,0,0,0.25)',
     outline: 'none'
   },
   clickableBtn: {
     '&:hover': {
-      background: '#3065a6',
+      background: '#1963a9',
       cursor: 'pointer'
     },
-    '&:active': {
-      background: '#2c5c96'
+    '&:active, &:focus': {
+      background: '#175b9b'
     }
   },
   roundedBtn: {
@@ -37,11 +37,11 @@ const useStyles = createUseStyles({
 });
 
 function Button(props) {
-  const { children, onClick, rounded } = props;
+  const { className, children, onClick, rounded, unclickable } = props;
   const { btn, container, roundedBtn, clickableBtn } = useStyles();
 
   return (
-    <button className={btn + (rounded ? ' ' + roundedBtn : '') + (onClick ? ' ' + clickableBtn : '')} onClick={onClick}>
+    <button className={btn + (rounded ? ' ' + roundedBtn : '') + (!unclickable ? ' ' + clickableBtn : '') + ' ' + className} onClick={onClick}>
       <div className={container}>
         {children}
       </div>
