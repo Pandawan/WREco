@@ -34,12 +34,33 @@ let symps = {
     summary:
       'A bone fracture (sometimes abbreviated FRX or Fx, Fx, or #) is a medical condition in which there is a partial or complete break in the continuity of the bone. In more severe cases, the bone may be broken into several pieces.'
   },
+  leg: {
+    name: 'Bone Fracture',
+    image: 'https://i.imgur.com/JSeULSj.jpg',
+    rarity: 'Very common',
+    summary:
+      'A bone fracture (sometimes abbreviated FRX or Fx, Fx, or #) is a medical condition in which there is a partial or complete break in the continuity of the bone. In more severe cases, the bone may be broken into several pieces.'
+  },
+  arm: {
+    name: 'Bone Fracture',
+    image: 'https://i.imgur.com/JSeULSj.jpg',
+    rarity: 'Very common',
+    summary:
+      'A bone fracture (sometimes abbreviated FRX or Fx, Fx, or #) is a medical condition in which there is a partial or complete break in the continuity of the bone. In more severe cases, the bone may be broken into several pieces.'
+  },
   stroke: {
     name: 'Stroke',
     image: 'https://i.imgur.com/B677Lx9.jpg',
     rarity: 'common',
     summary:
       'A stroke is a medical condition in which poor blood flow to the brain results in cell death. There are two main types of stroke: ischemic, due to lack of blood flow, and hemorrhagic, due to bleeding.'
+  },
+  'car crash': {
+    name: 'Car Crash',
+    imgur: 'https://i.ytimg.com/vi/D91YcgfcU2Q/maxresdefault.jpg',
+    rarity: 'common',
+    summary:
+      'A traffic collision, also called a motor vehicle collision (MVC) among other terms, occurs when a vehicle collides with another vehicle, pedestrian, animal, road debris, or other stationary obstruction, such as a tree, pole or building. Traffic collisions often result in injury, death, and property damage.'
   }
 };
 
