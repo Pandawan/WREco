@@ -17,15 +17,31 @@ app.post('/', cors(), async (req, res) => {
     'https://wreco-nlp.cognitiveservices.azure.com/',
     new TextAnalyticsApiKeyCredential('133eada7d2484c32b5df5f88a38ee941')
   );
-  const { name, symptoms } = req.body;
-  let returnObj = {};
+  const { name, symptoms, files } = req.body;
 
   const [result1] = await client.analyzeSentiment([symptoms]);
   const [result2] = await client.extractKeyPhrases([symptoms]);
+  let returnObj = {
+    name: name,
+    symptoms: result2.keyPhrases,
+    timestamp: new Date().toISOString()
+  };
+  console.log(result2.keyPhrases);
+  console.log(Object.keys(severities).length);
   for (let i = 0; i < result2.keyPhrases.length; i++) {
-    for (let j = 0; j < Object.keys(severities); j++) {}
+    for (let j = 0; j < Object.keys(severities).length; j++) {
+      if (
+        severities[[Object.keys(severities)[j]]].includes(result2.keyPhrases[i])
+      ) {
+        returnObj.severity = Object.keys(severities)[j];
+      }
+    }
   }
-  res.send({ ...result1, ...result2 });
+  if (!returnObj.severity) {
+    returnObj.severity = 'moderate';
+  }
+  console.log(returnObj);
+  res.send(returnObj);
 });
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
