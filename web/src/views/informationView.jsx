@@ -6,6 +6,7 @@ import createPersistedState from 'use-persisted-state';
 import ErrorMessage from 'components/errorMessage';
 import InputField from 'components/inputField';
 import Button from 'components/button';
+import Title from 'components/title';
 
 const useInformation = createPersistedState('information');
 
@@ -19,13 +20,17 @@ const useStyles = createUseStyles({
     '& > *': {
       margin: '1rem 0'
     }
-  }
+  },
+  submitDiv: {
+    display: 'flex',
+    justifyContent: 'flex-end'
+  },
 });
 
 function InformationView() {
   const history = useHistory();
 
-  const { mainContainer, form } = useStyles();
+  const { mainContainer, form, submitDiv } = useStyles();
 
   const [nameInput, setNameInput] = useState('');
   const [telInput, setTelInput] = useState('');
@@ -36,7 +41,7 @@ function InformationView() {
   return (
     <div className={mainContainer}>
       <form className={form}>
-        <h2>Information</h2>
+        <Title>Information</Title>
         <InputField 
           name="Name*"
           type="text"
@@ -63,7 +68,8 @@ function InformationView() {
           )
           : null
         }
-        <Button label="Submit" onClick={async (event) => {
+        <div className={submitDiv}>
+        <Button rounded onClick={async (event) => {
           event.preventDefault();
 
           if (!nameInput || !telInput || !historyInput) {
@@ -73,8 +79,9 @@ function InformationView() {
 
           const data = { name: nameInput, tel: telInput, history: historyInput };
           setInformation(data);
-          history.push('/');
-        }}/>
+          history.push('/choice');
+        }}>Submit</Button>
+        </div>
       </form>
     </div>
   );

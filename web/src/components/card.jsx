@@ -2,30 +2,24 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
-  btn: {
-    background: '#336cb1',
-    color: 'white',
+  crd: {
+    background: 'white',
+    color: '#333',
     padding: '0.75rem 1rem',
     minWidth: '3rem',
-    // textTransform: 'uppercase',
+    textTransform: 'uppercase',
     fontWeight: 'bold',
-    fontSize: '0.8rem',
+    fontSize: '0.75rem',
     border: '2px solid transparent',
     borderRadius: '2em',
     textAlign: 'center',
     boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
-    outline: 'none'
-  },
-  clickableBtn: {
+    outline: 'none',
     '&:hover': {
-      background: '#3065a6',
       cursor: 'pointer'
     },
-    '&:active': {
-      background: '#2c5c96'
-    }
   },
-  roundedBtn: {
+  roundedCrd: {
     borderRadius: '5rem',
   },
   container: {
@@ -36,17 +30,17 @@ const useStyles = createUseStyles({
   }
 });
 
-function Button(props) {
+function Card(props) {
   const { children, onClick, rounded } = props;
-  const { btn, container, roundedBtn, clickableBtn } = useStyles();
+  const { crd, container, roundedCrd, clickableCrd } = useStyles();
 
   return (
-    <button className={btn + (rounded ? ' ' + roundedBtn : '') + (onClick ? ' ' + clickableBtn : '')} onClick={onClick}>
+    <div className={crd + (rounded ? ' ' + roundedCrd : '') + (onClick ? ' ' + clickableCrd : '')} onClick={onClick}>
       <div className={container}>
         {children}
       </div>
-    </button>
+    </div>
   );
 }
 
-export default Button;
+export default Card;
