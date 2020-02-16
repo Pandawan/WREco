@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useHistory } from "react-router-dom";
-import createPersistedState from 'use-persisted-state';
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 
 import FileUpload from 'components/fileUpload';
 import ErrorMessage from 'components/errorMessage';
@@ -9,8 +9,6 @@ import { sendRequestToServer } from 'helpers/api';
 import InputField from 'components/inputField';
 import Button from 'components/button';
 import Title from 'components/title';
-
-const useInformation = createPersistedState('information');
 
 const useStyles = createUseStyles({
   mainContainer: {
@@ -33,6 +31,15 @@ const useStyles = createUseStyles({
   }
 });
 
+const defaultQueue = [
+  {
+    name: "Toby",
+    symptoms: [ "strong", "Migraine" ],
+    timestamp: "2020-02-16T06:02:30.207Z",
+    severity: "moderate"
+  }
+];
+
 function MainView() {
   const history = useHistory();
 
@@ -41,7 +48,9 @@ function MainView() {
   const [symptomsInput, setSymptomsInput] = useState('');
   const [fileInput, setFileInput] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [information] = useInformation(null);
+  const [information] = useLocalStorage('information', null);
+  const [queue] = useLocalStorage('queue', defaultQueue);
+
 
   return (
     <div className={mainContainer}>
@@ -89,7 +98,11 @@ function MainView() {
 
             const data = { name: information.name, symptoms: symptomsInput, files: fileInput };
             const response = await sendRequestToServer(data);
-            history.push('/response', response);
+
+            queue.push(response);
+            writeStorage('queue', queue);
+
+            history.push('/debug', queue);
           }}>Submit</Button>
         </div>
       </form>

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useHistory } from "react-router-dom";
-import createPersistedState from 'use-persisted-state';
+import { writeStorage } from '@rehooks/local-storage';
 
 import ErrorMessage from 'components/errorMessage';
 import InputField from 'components/inputField';
 import Button from 'components/button';
 import Title from 'components/title';
-
-const useInformation = createPersistedState('information');
 
 const useStyles = createUseStyles({
   mainContainer: {
@@ -36,7 +34,6 @@ function InformationView() {
   const [telInput, setTelInput] = useState('');
   const [historyInput, setHistoryInput] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
-  const [, setInformation] = useInformation(null);
 
   return (
     <div className={mainContainer}>
@@ -78,7 +75,7 @@ function InformationView() {
           }
 
           const data = { name: nameInput, tel: telInput, history: historyInput };
-          setInformation(data);
+          writeStorage('information', data);
           history.push('/choice');
         }}>Submit</Button>
         </div>
