@@ -1,22 +1,32 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import InformationView from 'views/informationView';
 import MainView from 'views/mainView';
 import ResponseView from 'views/responseView';
+import Navbar from 'components/navbar';
 
 function App() {
   return (
     <div className="app">
-      <BrowserRouter>
-        <Switch>
-          <Route path="/response">
-            <ResponseView />
-          </Route>
-          <Route path="/">
-            <MainView />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/response">
+              <ResponseView />
+            </Route>
+            <Route path="/information">
+              <InformationView />
+            </Route>
+            <Route path="/">
+              <MainView />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </main>
     </div>
   );
 }
