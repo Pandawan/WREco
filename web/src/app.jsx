@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { createUseStyles } from 'react-jss';
 
 import InformationView from 'views/informationView';
 import MainView from 'views/mainView';
@@ -11,19 +10,9 @@ import VirtualWaitingRoomView from 'views/virtualWaitingRoom';
 import Navbar from 'components/navbar';
 import InfoSymptom from 'components/infoSymptom';
 
-const useStyles = createUseStyles({
-  app: {
-    background: 'linear-gradient(45deg, #6565e8 0%, #82eef2 100%)',
-    width: '100%',
-    height: '100%'
-  }
-});
-
 function App() {
-  const { app } = useStyles();
-
   return (
-    <div className={app}>
+    <div>
       <header>
         <Navbar />
       </header>

@@ -8,6 +8,8 @@ import Title from 'components/title';
 import { calculateScore } from 'helpers/score';
 import { defaultQueue } from 'helpers/defaultQueue';
 import InfoSymptom from 'components/infoSymptom';
+import ErrorMessage from 'components/errorMessage';
+import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   mainContainer: {
@@ -78,6 +80,7 @@ function VirtualWaitingRoomView() {
     yellowBackground
   } = useStyles();
   const [information] = useLocalStorage('information', null);
+
   const queue = useLocalStorage('queue', defaultQueue)[0]
     .map((data) => ({ ...data, score: calculateScore(data) }))
     .sort((a, b) => b.score - a.score);
@@ -93,6 +96,13 @@ function VirtualWaitingRoomView() {
       ? dayjs(waitingTime + ' mins').hour() + ' hours'
       : waitingTime + ' mins'
     );
+
+
+  if(!information) {
+    return (
+      <ErrorMessage><p>No patient information specified, please fill out <Link to="/information">this form</Link>.</p></ErrorMessage>
+    );
+  }
 
   return (
     <div className={mainContainer}>
