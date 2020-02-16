@@ -6,7 +6,7 @@ const useStyles = createUseStyles({
     display: 'block',
     padding: '0.5rem 1rem',
     margin: '0.5rem',
-    backgroundColor: 'rgba(206, 17, 38, 0.05)',
+    backgroundColor: 'rgb(255, 91, 109)',
     overflowX: 'auto',
     borderRadius: '0.25rem'
   }
