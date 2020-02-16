@@ -1,8 +1,16 @@
 const severities = {
-  mild: ['cough', 'cold', 'flu', 'headache'],
-  moderate: ['rash', 'hives', 'migraine'],
-  severe: ['bone', 'vehicle', 'head']
+  mild: ['cough', 'cold', 'flu', 'headache', 'mood'],
+  moderate: [
+    'rash',
+    'hives',
+    'migraine',
+    'leg',
+    'arm',
+    'unconscious',
+    'accident'
+  ],
+  critical: ['bone', 'vehicle', 'head', 'car crash', 'heart failure']
 };
 
 //export default severities;
-module.export = severities;
+module.exports = severities;
