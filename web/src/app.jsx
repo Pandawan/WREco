@@ -13,11 +13,11 @@ import InfoSymptom from 'components/infoSymptom';
 function App() {
   return (
     <div>
-      <header>
-        <Navbar />
-      </header>
-      <main>
-        <BrowserRouter>
+      <BrowserRouter>
+        <header>
+          <Navbar />
+        </header>
+        <main>
           <Switch>
             <Route path='/debug'>
               <DebugView />
@@ -41,8 +41,8 @@ function App() {
               <MainView />
             </Route>
           </Switch>
-        </BrowserRouter>
-      </main>
+        </main>
+      </BrowserRouter>
     </div>
   );
 }
