@@ -1,6 +1,7 @@
 export async function sendRequestToServer(data) {
   const response = await fetch("http://localhost:5000", {
     method: "POST",
+    mode: 'cors',
     body: JSON.stringify(data),
     headers: {
       "content-type": "application/json"

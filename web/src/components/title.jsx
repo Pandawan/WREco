@@ -15,7 +15,7 @@ function Title(props) {
   const { title } = useStyles();
 
   return (
-    <Button rounded onClick={event => event.preventDefault()}>
+    <Button rounded unclickable onClick={(event) => event.preventDefault()}>
       <h2 className={title}>
         {children}
       </h2>

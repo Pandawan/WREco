@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
     border: '2px solid transparent',
     borderRadius: '2em',
     textAlign: 'center',
-    boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
+    boxShadow: '0px 1px 4px 0px rgba(0,0,0,0.25)',
     outline: 'none',
     '&:hover': {
       cursor: 'pointer'
@@ -31,11 +31,11 @@ const useStyles = createUseStyles({
 });
 
 function Card(props) {
-  const { children, onClick, rounded } = props;
+  const { className, children, onClick, rounded } = props;
   const { crd, container, roundedCrd, clickableCrd } = useStyles();
 
   return (
-    <div className={crd + (rounded ? ' ' + roundedCrd : '') + (onClick ? ' ' + clickableCrd : '')} onClick={onClick}>
+    <div className={crd + (rounded ? ' ' + roundedCrd : '') + (onClick ? ' ' + clickableCrd : '') + ' ' + className} onClick={onClick}>
       <div className={container}>
         {children}
       </div>

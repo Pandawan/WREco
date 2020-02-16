@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { createUseStyles } from 'react-jss';
 
 import InformationView from 'views/informationView';
 import MainView from 'views/mainView';
 import ResponseView from 'views/responseView';
 import ChoiceView from 'views/choiceView';
+import VirtualWaitingRoomView from 'views/virtualWaitingRoom';
 import Navbar from 'components/navbar';
-import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   app: {
-    background: 'linear-gradient(45deg, rgba(97,130,226,1) 0%, rgba(143,203,227,1) 75%)',
+    background: 'linear-gradient(45deg, #6565e8 0%, #82eef2 100%)',
     width: '100%',
     height: '100%'
   }
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route path="/choice">
               <ChoiceView />
+            </Route>
+            <Route path="/room">
+              <VirtualWaitingRoomView />
             </Route>
             <Route path="/">
               <MainView />
