@@ -87,13 +87,14 @@ function VirtualWaitingRoomView() {
 
     console.log(queue);
 
-  const positionInQueue = queue.findIndex((val) => val.name === information.name);
-
-  const waitingTime = positionInQueue * 15;
+    
+    let positionInQueue = queue.findIndex((val) => val.name === information.name);
+    
+    const waitingTime = positionInQueue * 15;
   const waitingTimeText = waitingTime === 0
     ? 'shortly'
     : (waitingTime > 60
-      ? dayjs(waitingTime + ' mins').hour() + ' hours'
+      ? Math.round((waitingTime / 60)) + ' hour(s)'
       : waitingTime + ' mins'
     );
 

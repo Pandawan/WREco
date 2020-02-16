@@ -76,7 +76,7 @@ function InformationView() {
 
           const data = { name: nameInput, tel: telInput, history: historyInput };
           writeStorage('information', data);
-          history.push('/choice');
+          history.push('/main');
         }}>Submit</Button>
         </div>
       </form>

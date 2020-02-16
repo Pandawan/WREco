@@ -25,9 +25,6 @@ function App() {
             <Route path='/information'>
               <InformationView />
             </Route>
-            <Route path='/choice'>
-              <ChoiceView />
-            </Route>
             <Route path='/assistant'>
               <AssistantView />
             </Route>
@@ -37,8 +34,11 @@ function App() {
             <Route path='/testinfo'>
               <InfoSymptom symptoms={['stroke', 'minutes', 'unconscious']} />
             </Route>
-            <Route path='/'>
+            <Route path='/main'>
               <MainView />
+            </Route>
+            <Route path='/'>
+              <ChoiceView />
             </Route>
           </Switch>
         </main>
