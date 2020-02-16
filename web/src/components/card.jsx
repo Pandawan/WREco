@@ -13,7 +13,6 @@ const useStyles = createUseStyles({
     border: '2px solid transparent',
     borderRadius: '2em',
     textAlign: 'center',
-    boxShadow: '0px 1px 4px 0px rgba(0,0,0,0.25)',
     outline: 'none',
     '&:hover': {
       cursor: 'pointer'
@@ -21,6 +20,9 @@ const useStyles = createUseStyles({
   },
   roundedCrd: {
     borderRadius: '5rem',
+  },
+  shadowCrd: {
+    boxShadow: '0px 1px 4px 0px rgba(0,0,0,0.25)',
   },
   container: {
     width: '100%',
@@ -31,11 +33,19 @@ const useStyles = createUseStyles({
 });
 
 function Card(props) {
-  const { className, children, onClick, rounded } = props;
-  const { crd, container, roundedCrd, clickableCrd } = useStyles();
+  const { className, children, onClick, rounded, noShadow } = props;
+  const { crd, container, roundedCrd, clickableCrd, shadowCrd } = useStyles();
+
+  const classes = [
+    crd,
+    rounded ? roundedCrd : undefined,
+    onClick ? clickableCrd : undefined,
+    noShadow ? undefined : shadowCrd,
+    className
+  ].filter(value => value);
 
   return (
-    <div className={crd + (rounded ? ' ' + roundedCrd : '') + (onClick ? ' ' + clickableCrd : '') + ' ' + className} onClick={onClick}>
+    <div className={classes.join(' ')} onClick={onClick}>
       <div className={container}>
         {children}
       </div>
