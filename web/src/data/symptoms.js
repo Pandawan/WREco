@@ -27,6 +27,13 @@ let symps = {
     summary:
       'A bone fracture (sometimes abbreviated FRX or Fx, Fx, or #) is a medical condition in which there is a partial or complete break in the continuity of the bone. In more severe cases, the bone may be broken into several pieces.'
   },
+  'bone fracture': {
+    name: 'Bone Fracture',
+    image: 'https://i.imgur.com/JSeULSj.jpg',
+    rarity: 'Very common',
+    summary:
+      'A bone fracture (sometimes abbreviated FRX or Fx, Fx, or #) is a medical condition in which there is a partial or complete break in the continuity of the bone. In more severe cases, the bone may be broken into several pieces.'
+  },
   stroke: {
     name: 'Stroke',
     image: 'https://i.imgur.com/B677Lx9.jpg',
