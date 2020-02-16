@@ -4,13 +4,10 @@ import { createUseStyles } from 'react-jss';
 
 import InformationView from 'views/informationView';
 import MainView from 'views/mainView';
-import ResponseView from 'views/responseView';
+import DebugView from 'views/debugView';
 import ChoiceView from 'views/choiceView';
 import VirtualWaitingRoomView from 'views/virtualWaitingRoom';
 import Navbar from 'components/navbar';
-
-import InfoView from 'views/infoView';
-import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   app: {
@@ -31,14 +28,11 @@ function App() {
       <main>
         <BrowserRouter>
           <Switch>
-            <Route path='/response'>
-              <ResponseView />
+            <Route path='/debug'>
+              <DebugView />
             </Route>
             <Route path='/information'>
               <InformationView />
-            </Route>
-            <Route path='/info'>
-              <InfoView />
             </Route>
             <Route path='/choice'>
               <ChoiceView />

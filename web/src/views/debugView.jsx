@@ -12,7 +12,8 @@ const useStyles = createUseStyles({
   }
 });
 
-function ResponseView() {
+// Use history.push('/debug', data) to debug your data by printing it as JSON
+function DebugView() {
   const { state } = useLocation();
   const { mainContainer } = useStyles();
 
@@ -34,4 +35,4 @@ function ResponseView() {
   );
 }
 
-export default ResponseView;
+export default DebugView;

@@ -12,6 +12,8 @@ export function calculateScore(data) {
     case 'critical':
       score += 10000;
       break;
+    default:
+      break;
   }
   
   // Get +20 per hour spent at hospital
