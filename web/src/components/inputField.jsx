@@ -2,35 +2,44 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
+  label: {
+    fontWeight: 'bold',
+    marginLeft: '0.5rem',
+  },
   field: {
     display: 'block',
     width: '100%',
-    borderRadius: '0.25em',
+    borderRadius: '1.5rem',
     border: '1px solid #ccc',
-    padding: '0 0.25rem',
-    minHeight: '1.5rem',
+    padding: '0 1rem',
+    minHeight: '2.5rem',
     lineHeight: '1.15rem',
     fontSize: '0.9em',
+    fontWeight: 'bold',
     minWidth: '15rem',
-    boxSizing: 'border-box' 
+    boxSizing: 'border-box',
+    boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
+    marginTop: '0.25rem',
+    outline: 'none'
   },
   textAreaField: {
+    padding: '1rem',
     fontSize: '0.9em',
     minHeight: '10rem',
-    maxWidth: '100%',
+    maxWidth: '100%'
   }
 });
 
 function InputField(props) {
   const { name, type, value, onChange, className } = props;
 
-  const { field, textAreaField } = useStyles();
+  const { label, field, textAreaField } = useStyles();
 
   const id = name.toLowerCase().replace(/[^\w]/, '');
 
   return (
     <div className={className}>
-      <label htmlFor={id}>{name}</label>
+      <label className={label} htmlFor={id}>{name}</label>
       {
         type === 'textarea'
           ? <textarea className={field + ' ' + textAreaField} name={id} id={id} value={value} onChange={onChange} />

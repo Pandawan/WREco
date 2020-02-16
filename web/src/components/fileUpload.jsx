@@ -5,9 +5,11 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   container: {
-    padding: '0.5rem',
-    border: '2px dashed #ccc',
-    borderRadius: '0.5rem',
+    padding: '1rem',
+    marginTop: '0.25rem',
+    border: '2px dashed white',
+    boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
+    borderRadius: '1.5rem',
     '&:hover': {
       cursor: 'pointer'
     }

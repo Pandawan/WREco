@@ -8,6 +8,7 @@ import ErrorMessage from 'components/errorMessage';
 import { sendRequestToServer } from 'helpers/api';
 import InputField from 'components/inputField';
 import Button from 'components/button';
+import Title from 'components/title';
 
 const useInformation = createPersistedState('information');
 
@@ -21,13 +22,21 @@ const useStyles = createUseStyles({
     '& > *': {
       margin: '1rem 0'
     }
+  },
+  submitDiv: {
+    display: 'flex',
+    justifyContent: 'flex-end'
+  },
+  label: {
+    fontWeight: 'bold',
+    marginLeft: '0.5rem',
   }
 });
 
 function MainView() {
   const history = useHistory();
 
-  const { mainContainer, form, field } = useStyles();
+  const { mainContainer, form, field, submitDiv, label } = useStyles();
 
   const [symptomsInput, setSymptomsInput] = useState('');
   const [fileInput, setFileInput] = useState([]);
@@ -37,20 +46,21 @@ function MainView() {
   return (
     <div className={mainContainer}>
       <form className={form}>
-        <h2>Create New Case
-          {information && information.name
+        <Title>
+          Create New Case
+            {information && information.name
             ? <span> for {information.name}</span>
             : undefined
           }
-        </h2>
-        <InputField 
+        </Title>
+        <InputField
           name="Symptoms*"
           type="textarea"
           value={symptomsInput}
           onChange={(event) => setSymptomsInput(event.target.value)}
         />
         <div>
-          <label htmlFor="documents">Additional Photos or Documents</label>
+          <label className={label} htmlFor="documents">Additional Photos or Documents</label>
           <FileUpload
             className={field}
             name="documents"
@@ -68,18 +78,20 @@ function MainView() {
           )
           : null
         }
-        <Button label="Submit" onClick={async (event) => {
-          event.preventDefault();
+        <div className={submitDiv}>
+          <Button rounded onClick={async (event) => {
+            event.preventDefault();
 
-          if (!symptomsInput) {
-            setErrorMessage('Symptoms field is required.');
-            return;
-          }
+            if (!symptomsInput) {
+              setErrorMessage('Symptoms field is required.');
+              return;
+            }
 
-          const data = { name: information.name, symptoms: symptomsInput, files: fileInput };
-          const response = await sendRequestToServer(data);
-          history.push('/response', response);
-        }}/>
+            const data = { name: information.name, symptoms: symptomsInput, files: fileInput };
+            const response = await sendRequestToServer(data);
+            history.push('/response', response);
+          }}>Submit</Button>
+        </div>
       </form>
     </div>
   );
