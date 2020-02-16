@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import createPersistedState from 'use-persisted-state';
 
 import FileUpload from 'components/fileUpload';
+import ErrorMessage from 'components/errorMessage';
 import { sendRequestToServer } from 'helpers/api';
 
 const useInformation = createPersistedState('information');
@@ -20,18 +21,22 @@ const useStyles = createUseStyles({
   },
   field: {
     display: 'block',
-    width: '100%'
+    width: '100%',
+  },
+  symptomsField: {
+    fontSize: '0.9em',
+    minHeight: '10rem'
   }
 });
 
 function MainView() {
   const history = useHistory();
 
-
-  const { mainContainer, form, field } = useStyles();
+  const { mainContainer, form, field, symptomsField} = useStyles();
 
   const [symptomsInput, setSymptomsInput] = useState('');
   const [fileInput, setFileInput] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [information] = useInformation(null);
 
   return (
@@ -44,8 +49,8 @@ function MainView() {
           }
         </h1>
         <div>
-          <label htmlFor="symptoms">Symptoms</label>
-          <textarea className={field} name="symptoms" id="symptoms" value={symptomsInput} onChange={(event) => setSymptomsInput(event.target.value)} />
+          <label htmlFor="symptoms">Symptoms*</label>
+          <textarea className={field + ' ' + symptomsField} name="symptoms" id="symptoms" value={symptomsInput} onChange={(event) => setSymptomsInput(event.target.value)} />
         </div>
         <div>
           <label htmlFor="documents">Additional Photos or Documents</label>
@@ -58,8 +63,22 @@ function MainView() {
             }}
           />
         </div>
+        {errorMessage
+          ? (
+            <ErrorMessage>
+              <p>Error: {errorMessage}</p>
+            </ErrorMessage>
+          )
+          : null
+        }
         <input type="button" value="Submit" onClick={async (event) => {
           event.preventDefault();
+
+          if (!symptomsInput) {
+            setErrorMessage('Symptoms field is required.');
+            return;
+          }
+
           const data = { symptoms: symptomsInput, files: fileInput };
           const response = await sendRequestToServer(data);
           history.push('/response', response);
