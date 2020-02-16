@@ -26,7 +26,7 @@ function Navbar() {
   return (
     <nav className={navbar}>
       <div className={innerContainer}>
-        <h1 className={title}><Link to="/choice">Waitless</Link></h1>
+        <h1 className={title}><Link to="/">Waitless</Link></h1>
       </div>
     </nav>
   );

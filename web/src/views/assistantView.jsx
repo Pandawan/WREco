@@ -7,6 +7,7 @@ import Title from 'components/title';
 import { useHistory } from 'react-router-dom';
 import useLocalStorage, { writeStorage } from '@rehooks/local-storage';
 import { sendRequestToServer } from 'helpers/api';
+import { defaultQueue } from 'helpers/defaultQueue';
 
 const useStyles = createUseStyles({
   mainContainer: {
@@ -72,7 +73,7 @@ const clientData = {
 
 function AssistantView() {
   const [information] = useLocalStorage('information', null);
-  const [queue] = useLocalStorage('queue', null);
+  const [queue] = useLocalStorage('queue', defaultQueue);
 
   const history = useHistory();
 
