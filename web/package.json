@@ -9,7 +9,8 @@
     "react-dropzone": "^10.2.1",
     "react-jss": "^10.0.4",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "use-persisted-state": "^0.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

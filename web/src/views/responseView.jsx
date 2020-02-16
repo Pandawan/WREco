@@ -1,18 +1,23 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import ErrorMessage from 'components/errorMessage';
 
 function ResponseView() {
   const { state } = useLocation();
 
   if (!state) {
-    return <ErrorMessage message="400 Bad Request" />;
+    return (
+      <ErrorMessage>
+        <p>Error: 400 Bad Request</p>
+        <Link to="/">Go home?</Link>
+      </ErrorMessage>
+    );
   }
 
   return (
     <div>
       <code>
-        { JSON.stringify(state, null, '\t') }
+        {JSON.stringify(state, null, '\t')}
       </code>
     </div>
   );
