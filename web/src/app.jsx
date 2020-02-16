@@ -8,6 +8,7 @@ import DebugView from 'views/debugView';
 import ChoiceView from 'views/choiceView';
 import VirtualWaitingRoomView from 'views/virtualWaitingRoom';
 import Navbar from 'components/navbar';
+import InfoSymptom from 'components/infoSymptom';
 
 const useStyles = createUseStyles({
   app: {
@@ -37,10 +38,13 @@ function App() {
             <Route path='/choice'>
               <ChoiceView />
             </Route>
-            <Route path="/room">
+            <Route path='/room'>
               <VirtualWaitingRoomView />
             </Route>
-            <Route path="/">
+            <Route path='/testinfo'>
+              <InfoSymptom symptoms={['stroke', 'minutes', 'unconscious']} />
+            </Route>
+            <Route path='/'>
               <MainView />
             </Route>
           </Switch>
