@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useHistory } from "react-router-dom";
 import createPersistedState from 'use-persisted-state';
+
 import ErrorMessage from 'components/errorMessage';
 
 const useInformation = createPersistedState('information');
@@ -57,12 +58,13 @@ function InformationView() {
           : null
         }
         <input type="button" value="Submit" onClick={async (event) => {
+          event.preventDefault();
+
           if (!nameInput || !dobInput || !historyInput) {
             setErrorMessage('All fields are required.');
             return;
           }
 
-          event.preventDefault();
           const data = { name: nameInput, dob: dobInput, history: historyInput };
           setInformation(data);
           history.push('/');
