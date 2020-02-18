@@ -1,7 +1,10 @@
 # Waitless
 check out the Devpost at https://devpost.com/software/test-jrqbek
+
 This project won the following prizes:
+
 [Genentech] Most Beneficial to Patients
+
 [SoundHound] Best Use of Houndify Voice AI API (1st place)
 
 ## Inspiration
